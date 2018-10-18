@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.dao.mybatis.IBookMapper">
+	<!-- 这里的User是myBatis.xml文件中配置的别名，如果不用别名，直接使用com.demo.entity.User -->
+	<select id="getAllBook" resultType="Book">
+		select * from book;
+	</select>
+	
+	<insert id="AddBook" parameterType="Book">
+		insert into book(name,price,authorid) values(#{name},#{price},#{authorid})
+	</insert>
+
+	<delete  id="DelOneBook" parameterType="Book">
+		delete from book where id = #{id}
+	</delete >
+
+	<insert id="AddMoreBook" parameterType="java.util.List">
+		insert into book(name,price,authorid) values
+		<foreach collection="books" item="book" separator=",">
+			(#{book.name},#{book.price},#{book.authorid})
+		</foreach>
+	</insert>
+	
+	<select id="getBook" resultType="Book">
+		select * from book where id = #{id}
+	</select>
+</mapper>

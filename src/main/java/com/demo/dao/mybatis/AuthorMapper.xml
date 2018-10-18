@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.dao.mybatis.IAuthorMapper">
+	<!-- 这里的User是myBatis.xml文件中配置的别名，如果不用别名，直接使用com.demo.entity.User -->
+	<select id="getAllUser" resultType="Author">
+		select * from author;
+	</select>
+	
+	<select id="getAuthorById" resultType="Author" parameterType="java.lang.Integer">
+		select * from author where id = #{authorid};
+	</select>
+	
+	<delete id="DelAuthor" parameterType="Author">
+		delete from author where id = #{id};
+	</delete>
+
+</mapper>
